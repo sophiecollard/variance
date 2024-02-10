@@ -1,28 +1,15 @@
 package com.github.sophiecollard
 
-sealed trait Animal {
-  def name: String
-  def healthStatus: HealthStatus
-}
+sealed abstract class Animal(val name: String)
 
-object Animal {
+object Animal:
 
   final case class Cat(
-    name: String,
-    healthStatus: HealthStatus,
+    override val name: String,
     livesRemaining: Int
-  ) extends Animal
+  ) extends Animal(name)
 
   final case class Dog(
-    name: String,
-    healthStatus: HealthStatus,
-    breed: Option[String]
-  ) extends Animal
-
-  final case class Horse(
-    name: String,
-    healthStatus: HealthStatus,
-    racesWon: Int
-  ) extends Animal
-
-}
+    override val name: String,
+    breed: Option[DogBreed]
+  ) extends Animal(name)
